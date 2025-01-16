@@ -17,24 +17,30 @@ umi.use(signerIdentity(signer));
         // Follow this JSON structure
         // https://docs.metaplex.com/programs/token-metadata/changelog/v1.0#json-structure
 
-        const image = "https://devnet.irys.xyz/3tb1jdjQfynGEPvKPMfqTUohEuGE8HtZa6jPpt91bFZh"
+        const image = "https://devnet.irys.xyz/2g3GHZFEVV71SzXk7zoLPbiXmB3WR4crUTVoJDjUn2yC"
         const metadata = {
-            name: "AmazingRug",
-            symbol: "ARUG",
-            description: "A wonderful rug",
+            name: "Epic Rug",
+            symbol: "ER",
+            description: "An absolutely epic rug",
             image: image,
             attributes: [
-                {trait_type: 'color', value: 'blue'}
+                {trait_type: 'rarity', value: 'epic'}
             ],
             properties: {
                 files: [
                     {
                         type: "image/png",
-                        uri: "https://devnet.irys.xyz/3tb1jdjQfynGEPvKPMfqTUohEuGE8HtZa6jPpt91bFZh"
+                        uri: "https://devnet.irys.xyz/2g3GHZFEVV71SzXk7zoLPbiXmB3WR4crUTVoJDjUn2yC"
                     },
                 ]
             },
-            creators: []
+            creators: [
+                {
+                    address: "6c4LWWtKYGd2Bz37XX9CgKMmLa5AeJekYexo1Wr96Twa", // Replace with the actual wallet address of the creator
+                    share: 100,                     // Percentage of royalties for this creator (out of 100)
+                    verified: true                  // Set to true if the creator is verified
+                }
+            ]
         };
         const myUri = await umi.uploader.uploadJson(metadata);
         console.log("Your metadata URI: ", myUri);

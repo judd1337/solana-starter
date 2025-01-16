@@ -16,7 +16,13 @@ umi.use(mplTokenMetadata())
 const mint = generateSigner(umi);
 
 (async () => {
-    let tx = await createNft(umi, {mint, sellerFeeBasisPoints: percentAmount(100), name: "AwesomeRug", uri: "https://devnet.irys.xyz/7RmgTWskrKLB2XwQHN7Dzm4Ex9T9isYvViWDKbg9Syp4"})
+    let tx = await createNft(umi, {
+        mint, 
+        sellerFeeBasisPoints: percentAmount(4), 
+        name: "Epic Rug", 
+        uri: "https://devnet.irys.xyz/J2VH6pepJ8jsUNFwWPoKUFQia1xaUYNWVepSWfYxb6ro"
+    });
+
     let result = await tx.sendAndConfirm(umi);
     const signature = base58.encode(result.signature);
     
