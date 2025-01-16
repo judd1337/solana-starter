@@ -15,17 +15,17 @@ const connection = new Connection("https://api.devnet.solana.com", commitment);
 const mint = new PublicKey("5kWTyiAZ27u4j16sv8rjChNKS61WdhjRtHBFHifAinS2");
 
 // Recipient address
-const to = new PublicKey("<receiver address>");
+const to = new PublicKey("2oCZp7RrExMoGoVTsGuoTtgbyBR99ewJzHuWh8m1XBoj");
 
 (async () => {
     try {
         // Get the token account of the fromWallet address, and if it does not exist, create it
         const fromAta = await getOrCreateAssociatedTokenAccount(connection, keypair, mint, keypair.publicKey, false, commitment);
-        console.log(`Your ata is: ${fromAta.address.toBase58()}`);
+        console.log(`From ata is: ${fromAta.address.toBase58()}`);
 
         // Get the token account of the toWallet address, and if it does not exist, create it
         const toAta = await getOrCreateAssociatedTokenAccount(connection, keypair, mint, to, false, commitment);
-        console.log(`Your ata is: ${toAta.address.toBase58()}`);
+        console.log(`To ata is: ${toAta.address.toBase58()}`);
 
         // Transfer the new token to the "toTokenAccount" we just created
         const tx = await transfer(connection, keypair, fromAta.address, toAta.address, keypair, 2e6);
